@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html ng-app="demo">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script>
+        angular.module('demo', [])
+            .controller('HelloMe', function($scope, $http) {
+                $http.get('/greeting').
+                then(function(response) {
+                    $scope.greeting = response.data;
+                });
+            });
+    </script>
+</head>
+<body>
+<p>Get your Greeting <a href="/greeting">Greeting</a></p>
+<p>Get your Greeting1 <a href="/greeting1">Greeting1</a></p>
+<p>Get your Consume <a href="/consume">Consume</a></p>
+<p>Get your Bean <a href="/bean">Bean</a></p>
+<p>Get your Customer <a href="/customer">Customer</a></p>
+<p>Get your Booking <a href="/booking">Booking</a> <a href="/delete">Delete</a></p>
+<p>Get your files <a href="/list">File</a></p>
+<p>Go to Form <a href="/form">Form</a></p>
+<p>Go to JMS <a href="/jms">JMS</a></p>
+
+<div ng-controller="HelloMe">
+    <p>The ID is {{greeting.id}}</p>
+    <p>The content is {{greeting.content}}</p>
+</div>
+</body>
+</html>
