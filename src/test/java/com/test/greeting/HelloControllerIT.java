@@ -49,6 +49,6 @@ public class HelloControllerIT {
     @Test
     public void greetingShouldReturnDefaultMessage() throws Exception {
         org.assertj.core.api.Assertions.assertThat(this.template.getForObject("http://localhost:" + port + "/greet",
-                String.class)).contains("Hello World");
+                String.class)).contains("Hello, World");
     }
 }

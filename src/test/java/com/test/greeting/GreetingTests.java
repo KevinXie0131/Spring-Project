@@ -48,9 +48,9 @@ public class GreetingTests {
 
     @Test
     public void greetingShouldReturnMessageFromService() throws Exception {
-        when(service.greet()).thenReturn("Hello Mock");
+        when(service.greet()).thenReturn("Hello, Mock");
         this.mockMvc.perform(get("/greet")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Hello Mock")));
+                .andExpect(content().string(containsString("Hello, Mock")));
     }
 
     @Test
