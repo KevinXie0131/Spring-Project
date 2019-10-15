@@ -1,6 +1,9 @@
 package com.test.greeting;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -27,5 +30,11 @@ public class HelloControllerTest {
         mvc.perform(MockMvcRequestBuilders.get("/hello").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("Greetings from Spring Boot!")));
+    }
+
+    @Test
+    public void shouldReturnDefaultMessage() throws Exception {
+        this.mvc.perform(get("/greet")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Hello World")));
     }
 }

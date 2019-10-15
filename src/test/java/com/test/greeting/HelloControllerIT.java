@@ -37,4 +37,18 @@ public class HelloControllerIT {
         ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
         assertThat(response.getBody(), equalTo("Greetings from Spring Boot!"));
     }
+
+    @Autowired
+    private HelloController controller;
+
+    @Test
+    public void contexLoads() throws Exception {
+        org.assertj.core.api.Assertions.assertThat(controller).isNotNull();
+    }
+
+    @Test
+    public void greetingShouldReturnDefaultMessage() throws Exception {
+        org.assertj.core.api.Assertions.assertThat(this.template.getForObject("http://localhost:" + port + "/greet",
+                String.class)).contains("Hello World");
+    }
 }

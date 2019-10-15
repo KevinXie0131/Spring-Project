@@ -21,6 +21,9 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
 
     @Autowired
+    private GreetingService service;
+
+    @Autowired
     RestTemplate restTemplate;
 
     @Bean
@@ -32,6 +35,11 @@ public class GreetingController {
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
+    }
+
+    @RequestMapping("/greet")
+    public String greet() {
+        return service.greet();
     }
 
     @RequestMapping("/consume")
