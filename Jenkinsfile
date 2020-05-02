@@ -6,7 +6,7 @@ pipeline{
                 echo 'Spring Project @@@'
                 sh 'mvn -B -DskipTests clean package'
             }
-        },
+        }
         stage('Deploy') {
             steps {
                 script {
